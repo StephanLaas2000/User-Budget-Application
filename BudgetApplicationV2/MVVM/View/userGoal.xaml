@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="BudgetApplicationV2.MVVM.View.userGoal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BudgetApplicationV2.MVVM.View"
+             mc:Ignorable="d" 
+              d:DesignHeight="570" d:DesignWidth="830"
+             Background="#181735">
+   
+    <!--creating a template for all the textboxes so i can round them and customise them-->
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="roundedTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderBrush="AliceBlue" BorderThickness="3" CornerRadius="50">
+        <Grid Margin="-3,61,3,-61">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="515.294"/>
+                <ColumnDefinition Width="185.706"/>
+
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Set your goal" Grid.ColumnSpan="2" Margin="274,-6,266,191"
+                       FontSize="40" Foreground="White" FontWeight="Bold">
+                <TextBlock.TextDecorations>
+                    <TextDecoration/>
+                </TextBlock.TextDecorations>
+            </TextBlock>
+
+            <Image Source="\Images\goal.png" Margin="64,32,115,32" Width="100"/>
+
+            <!--Creating the textboxes for the user to input the vehicles detail-->
+            <TextBox Style="{DynamicResource roundedTextBox}" FontSize="15" FontWeight="Bold" Padding="5"  Background="#FFC0CB"  x:Name="txbSavings"  Width="200" Height="40" Grid.Column="1" Margin="183,76,95,126"/>
+            <TextBox Style="{DynamicResource roundedTextBox}" FontSize="15" FontWeight="Bold" Padding="5"  Background="#FFC0CB"  x:Name="txbDescription"  Width="200" Height="40" Grid.Column="1" Margin="197,153,109,49"/>
+            <TextBox Style="{DynamicResource roundedTextBox}" FontSize="15" FontWeight="Bold" Padding="5"  Background="#FFC0CB"  x:Name="txbYears"  Width="200" Grid.Column="1" Height="40" Margin="204,223,116,221" Grid.RowSpan="2"/>
+            <TextBox Style="{DynamicResource roundedTextBox}" FontSize="15" FontWeight="Bold" Padding="5"  Background="#FFC0CB"  x:Name="txbInterestRate"  Width="200" Height="40" Grid.Column="1" Margin="208,52,119,150" Grid.Row="1"/>
+
+            <!--creating textblocks to help the user decide what to enter where-->
+            <TextBlock Text="Amount due to save" FontSize="20" Foreground="White" FontFamily="Dosis" Margin="243,83,357,101" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Goal Description" FontSize="20" Foreground="White" FontFamily="Dosis" Margin="243,153,357,31" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Over how many years" FontSize="20" Foreground="White" FontFamily="Dosis" Margin="243,234,339,192" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <TextBlock Text="Interest rate" FontSize="20" Foreground="White" FontFamily="Dosis" Margin="243,63,357,121" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+            <!--creating a button with an image in it for the user to know where to submit his details-->
+            <Button x:Name="btnSubmit" Margin="266,121,195,51" Width="70" Height="70"
+                Background="#181735" Click="btnSubmit_Click" Grid.Row="1" Grid.Column="1" 
+                    BorderThickness="0">
+                <Image Source="\Images\submit2.png"
+                   Width="70"
+                   Height="70" RenderTransformOrigin="1.419,0.188"/>
+                <Button.ToolTip>
+                    Submit form
+                </Button.ToolTip>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

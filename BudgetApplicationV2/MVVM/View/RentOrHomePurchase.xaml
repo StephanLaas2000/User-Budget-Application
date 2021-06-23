@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="BudgetApplicationV2.MVVM.View.RentOrHomePurchase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BudgetApplicationV2.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="570" d:DesignWidth="830"
+             Background="#181735">
+
+    <!--creating a template for all the textboxes so i can round them and customise them-->
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <ControlTemplate x:Key="roundedTextBox" TargetType="{x:Type TextBoxBase}">
+            <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True">
+                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    
+    
+    
+    
+    
+    <Border BorderBrush="AliceBlue" BorderThickness="3" CornerRadius="50">
+        <Grid Margin="-32,29,-11,-54">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="515.294"/>
+                <ColumnDefinition Width="185.706"/>
+
+            </Grid.ColumnDefinitions>
+
+            
+            <Image Source="\Images\house.png" Margin="57,16,645,309"/>
+
+            <!--creating a button with an image in it for the user to know where to submit his details-->
+            <Button x:Name="btnSubmit" Margin="638,368,71,17"
+                Background="#181735" Click="btnSubmit_Click" BorderBrush="AliceBlue"
+                    BorderThickness="0">
+                <Image Source="\Images\submit2.png"
+                   Width="90"
+                   Height="90" RenderTransformOrigin="1.419,0.188"/>
+                <Button.ToolTip>
+                    Submit form
+                </Button.ToolTip>
+            </Button>
+
+            <!--creating textblocks to help the user decide what to enter where-->
+            <TextBlock Text="Are you Renting or Buying a property:" FontSize="25" Foreground="White" Margin="57,186,291,247" FontWeight="Bold"/>
+
+            <TextBlock Visibility="Hidden" x:Name="labRent2" Text="Monthly rent:" FontSize="20" Foreground="White" Margin="490,294,90,143" FontWeight="Normal"/>
+            <TextBlock Visibility="Hidden" x:Name="labRepayments" Text="Number of months:" FontSize="20" Foreground="White" Margin="66,453,514,-12" FontWeight="Normal" Grid.RowSpan="3"/>
+            <TextBlock Visibility="Hidden" x:Name="labRate" Text="Interest rate (%):" FontSize="20" Foreground="White" Margin="66,398,514,47" FontWeight="Normal"/>
+            <TextBlock Visibility="Hidden" x:Name="labDeposit" Text="Total Deposit:" FontSize="20" Foreground="White" Margin="66,344,514,101" FontWeight="Normal"/>
+
+            <TextBlock Visibility="Hidden" x:Name="labPurchasePrice" Text="Purchase Price:" FontSize="20" Foreground="White" Margin="66,292,514,155" FontWeight="Normal"/>
+
+            <!--Creating the textboxes for the user to input the vehicles detail-->
+            <TextBox Template="{DynamicResource roundedTextBox}" x:Name="txbRent" Margin="630,294,12,163" Background="#FFC0CB"
+                 FontSize="15" FontWeight="Bold" Padding="5"
+                 Width="200" Height="36" Visibility="Hidden"/>
+            <TextBox Template="{DynamicResource roundedTextBox}"  x:Name="txbRepayments" Margin="269,453,372,4" Background="#FFC0CB"
+                 FontSize="15" FontWeight="Bold" Padding="5"
+                 Width="200" Height="36" Visibility="Hidden"/>
+
+            <TextBox Template="{DynamicResource roundedTextBox}"  x:Name="txbRate" Margin="269,398,372,59" Background="#FFC0CB"
+                 FontSize="15" FontWeight="Bold" Padding="5"
+                 Width="200" Height="36" Visibility="Hidden"/>
+            <TextBox Template="{DynamicResource roundedTextBox}"  x:Name="txbDeposit" Margin="269,344,372,113" Background="#FFC0CB"
+                 FontSize="15" FontWeight="Bold" Padding="5"
+                 Width="200" Height="36" Visibility="Hidden"/>
+            <TextBox Template="{DynamicResource roundedTextBox}"  x:Name="txbPurchasePrice" Margin="269,294,372,163" Background="#FFC0CB"
+                 FontSize="15" FontWeight="Bold" Padding="5"
+                 Width="200" Height="36" Visibility="Hidden"/>
+          
+           
+            <!--creating a combobox where i add 2 items rent and house purchase the user can select either option , 
+            apon selection the necessary textblocks and textboxes will be made avalible-->
+            <ComboBox Margin="556,186,65,267" x:Name="cbRentOrProp" Foreground="#3DDDC2" SelectionChanged="cbRentOrProp_SelectionChanged">
+                <ComboBoxItem Background="#181735" Foreground="White" FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\steph\Downloads\renting.png" Height="30"></Image>
+                        <TextBlock Text="Rent" Padding="5" FontSize="20" Foreground="White" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+
+                </ComboBoxItem>
+                <ComboBoxItem Background="#181735" Foreground="White" FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\steph\Downloads\home.png" Height="30"></Image>
+                        <TextBlock Text="Purchase A house" Padding="5" FontSize="20" Foreground="White" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+
+                </ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Rent or Purchase home" Margin="256,30,112,403"
+                       FontSize="40" Foreground="White" FontWeight="Bold">
+                <TextBlock.TextDecorations>
+                    <TextDecoration/>
+                </TextBlock.TextDecorations>
+            </TextBlock>
+        </Grid>
+    </Border>
+</UserControl>

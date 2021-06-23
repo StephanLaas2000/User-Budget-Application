@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="BudgetApplicationV2.MVVM.View.purchaseVehicle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BudgetApplicationV2.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="570" d:DesignWidth="830"
+             Background="#181735">
+   
+    <!--creating a template for all the textboxes so i can round them and customise them-->
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <ControlTemplate x:Key="roundedTextBox" TargetType="{x:Type TextBoxBase}">
+            <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True">
+                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Border BorderBrush="AliceBlue" BorderThickness="3" CornerRadius="50">
+            <Grid Margin="-3,-20,3,-70">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="515.294"/>
+                    <ColumnDefinition Width="185.706"/>
+
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="235.136"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Text="Purchase a vehicle" Grid.ColumnSpan="2" Margin="255,50,62,78"
+                       FontSize="40" Foreground="White" FontWeight="Bold" Grid.Row="1">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration/>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+
+
+                <Image  Source="\Images\vehicle1.png" Margin="23,25,246,53" Grid.Row="1"/>
+
+                <!--Creating the textboxes for the user to input the vehicles detail-->
+                <TextBox FontSize="15" FontWeight="Bold" Padding="5" Template="{DynamicResource roundedTextBox}" Background="#FFC0CB" x:Name="txbMake" Width="200" Height="40" Margin="155,15,71,257" Grid.Row="2"/>
+                <TextBox FontSize="15" FontWeight="Bold" Padding="5" Template="{DynamicResource roundedTextBox}" Background="#FFC0CB" x:Name="txbModel" Width="200" Height="40" Margin="155,74,71,198" Grid.Row="2"/>
+                <TextBox FontSize="15" FontWeight="Bold" Padding="5" Template="{DynamicResource roundedTextBox}" Background="#FFC0CB" x:Name="txbprice" Width="200" Height="40" Margin="155,136,71,136" Grid.Row="2"/>
+                <TextBox FontSize="15" FontWeight="Bold" Padding="5" Template="{DynamicResource roundedTextBox}" Background="#FFC0CB" x:Name="txbDeposit" Width="200" Height="40" Margin="134,15,91,257" Grid.Column="1" Grid.Row="2"/>
+                <TextBox FontSize="15" FontWeight="Bold" Padding="5" Template="{DynamicResource roundedTextBox}" Background="#FFC0CB" x:Name="txbRate" Width="200" Height="40" Margin="134,74,91,198" Grid.Row="2" Grid.Column="1"/>
+                <TextBox FontSize="15" FontWeight="Bold" Padding="5" Template="{DynamicResource roundedTextBox}" Background="#FFC0CB" x:Name="txbInsure" Width="200" Height="40" Margin="134,138,91,134" Grid.Row="2" Grid.Column="1"/>
+
+                <!--creating textblocks to help the user decide what to enter where-->
+                <TextBlock Text="Make:"  FontSize="15" Foreground="White" FontFamily="Dosis" Margin="30,23,322,218" Grid.Row="2" />
+                <TextBlock Text="Model:" FontSize="15" Foreground="White" FontFamily="Dosis" Margin="30,87,322,122" Grid.Row="2"/>
+                <TextBlock Text="Purchase Price:" FontSize="15" Foreground="White" FontFamily="Dosis" Margin="31,144,250,64" Grid.Row="2"/>
+                <TextBlock Text="Total Deposit:" FontSize="15" Foreground="White" FontFamily="Dosis" Margin="20,22,278,220" Grid.Column="1" Grid.Row="2"/>
+                <TextBlock Text="Interest Rate:" FontSize="15" Foreground="White" FontFamily="Dosis" Margin="20,86,291,122" Grid.Row="2" Grid.Column="1"/>
+                <TextBlock Text="Insurance:" FontSize="15" Foreground="White" FontFamily="Dosis" Margin="20,158,200,51" Grid.Row="2" Grid.Column="1"/>
+
+                <!--creating a button with an image in it for the user to know where to submit his details--> 
+                <Button x:Name="btnSubmit" Margin="194,191,151,51" Width="80" Height="70"
+                Background="#181735" Click="btnSubmit_Click" Grid.Row="2" Grid.Column="1"
+                        BorderThickness="0">
+                    <Image Source="\Images\submit2.png"
+                   Width="70"
+                   Height="70" RenderTransformOrigin="1.419,0.188"/>
+                    <Button.ToolTip>
+                        Submit form
+                    </Button.ToolTip>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
