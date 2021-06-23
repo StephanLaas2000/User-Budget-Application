@@ -38,11 +38,6 @@ namespace BudgetApplicationV2.Classes
             double p = SavedAmt;
             double i = interestRat / 100;
             double x = Year * 12;
-            
-
-
-            //double interest = (p * i) * n;
-            //double repaymentMonthlyGoal = ((p + interest) / x);
 
             double totalAmt = p * Math.Pow(1 + i, n);
 
