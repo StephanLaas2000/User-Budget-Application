@@ -22,38 +22,10 @@ namespace BudgetApplicationV2.MVVM.View
         public RentOrHomePurchase()
         {
             InitializeComponent();
-            //try
-            //{
-            //    populateTextBox();
-            //}
-            //catch (System.Windows.Markup.XamlParseException)
-            //{
-            //    MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-            //}
+          
 
         }
-        //public void populateTextBox()
-        //{
-        //    try
-        //    {
-        //        //Code to populate the textboxes
-        //        txbName.Text = userGrossSalaryAndExpenses.UserName.ToString().ToUpper();
-        //        txbTax.Text = userGrossSalaryAndExpenses.monthlyTax.ToString();
-        //        txbGrossSalary.Text = userGrossSalaryAndExpenses.grossSalary.ToString();
-
-
-        //    }
-        //    catch (NullReferenceException)
-        //    {
-        //        MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-        //    }
-        //    catch (InvalidOperationException)
-        //    {
-        //        MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-        //    }
-
-
-        //}
+        
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {

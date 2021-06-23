@@ -14,57 +14,10 @@ namespace BudgetApplicationV2.MVVM.View
         public purchaseVehicle()
         {
             InitializeComponent();
-            //try
-            //{
-            //    populateTextBox();
-            //}
-            //    catch (System.Reflection.TargetInvocationException)
-            //{
-            //    MessageBox.Show("beep");
-            //}
-            //catch (NullReferenceException)
-            //{
-            //    MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-            //}
-            //catch (XamlParseException)
-            //{
-            //    MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-            //}
-            //catch (InvalidOperationException)
-            //{
-            //    MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-            //}
-
+          
         }
 
-        //public void populateTextBox()
-        //{
-        //    try
-        //    {
-        //        //Code to populate the textboxes with name , tax and grossSalary
-        //        txbName.Text = userGrossSalaryAndExpenses.UserName.ToString().ToUpper();
-        //        txbTax.Text = userGrossSalaryAndExpenses.monthlyTax.ToString();
-        //        txbGrossSalary.Text = userGrossSalaryAndExpenses.grossSalary.ToString();
-        //    }
-        //    catch (System.Reflection.TargetInvocationException)
-        //    {
-        //        MessageBox.Show("beep");
-        //    }
-        //    //This error handling is to allow for the user to view the purchase vehicle form 
-        //    catch (NullReferenceException)
-        //    {
-        //        MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-        //    }
-        //    catch (XamlParseException)
-        //    {
-        //        MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-        //    }
-        //    catch (InvalidOperationException)
-        //    {
-        //        MessageBox.Show("You may view the form but please enter your gross salaries and expenses first");
-        //    }
-
-        //}
+      
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
