@@ -6,7 +6,6 @@
              xmlns:viewModel ="clr-namespace:BudgetApplicationV2.MVVM.ViewModel"
              xmlns:view ="clr-namespace:BudgetApplicationV2.MVVM.View">
     <Application.Resources>
-//
         <!--Creating data that will change the views in real time when a function is selected--> 
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
 
